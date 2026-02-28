@@ -92,15 +92,41 @@ You have two browser modes:
    - usually not where your personal Chrome extensions live
 
 2. `chrome` profile (Browser Relay takeover of your real Chrome tab)
-   - use this when you need extensions like Simplify
+   - use this when you need your own Chrome context and extensions (e.g., Simplify)
+
+### Browser Relay setup (step-by-step)
+
+Use this once per tab/session when you want OpenClaw to control your real Chrome tab:
+
+1. Install the **OpenClaw Browser Relay** Chrome extension (if not already installed).
+2. Open the target page in **Google Chrome**.
+3. Click the OpenClaw Browser Relay toolbar icon on that tab.
+4. Confirm the extension badge/indicator shows it is **attached/ON**.
+5. Keep that tab open while automation runs.
+6. In your OpenClaw/browser calls, use `profile="chrome"` and keep operating on the same target tab.
+
+### Verify relay is connected
+
+- If OpenClaw can snapshot/click/type in that exact Chrome tab, relay is working.
+- If it says no Chrome tab is connected, re-click the relay icon on the tab.
+- If controls fail unexpectedly, refresh tab and re-attach relay.
 
 ### For extension-assisted flow (recommended)
+
 1. Open target application in Chrome.
-2. Ensure extension (e.g., Simplify) is installed and active.
-3. Click OpenClaw Browser Relay icon on that tab (badge ON).
+2. Ensure extension (e.g., Simplify) is installed, enabled, and logged in.
+3. Attach Browser Relay on that same tab (badge ON).
 4. Run automation against `profile="chrome"`.
 
-This gives fastest practical form filling with your real browser context.
+This gives fastest practical form filling with your real browser + extension context.
+
+### Common relay pitfalls
+
+- **Wrong profile**: using `openclaw` instead of `chrome` means no personal extensions.
+- **Not attached**: extension installed but relay icon not ON for the active tab.
+- **Tab switched/closed**: automation target changed; re-attach and continue on same tab.
+- **Permission blocks**: Chrome extension/site permissions disabled.
+
 
 ---
 
